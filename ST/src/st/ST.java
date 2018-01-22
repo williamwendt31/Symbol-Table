@@ -23,7 +23,6 @@ public class ST {
     
     //---inserts new symbol at head of slot in hash table---
     public void insertSymbol(chainedEntry newSymbol){
-        System.out.println("at insert");//test
         int index = getHash(newSymbol.getSymbol());
         if (symbolTable[index] == null){
             symbolTable[index] = newSymbol;//new chainedEntry(symbol, block);
