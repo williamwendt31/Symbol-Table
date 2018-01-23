@@ -22,14 +22,15 @@ public class ST {
     }
     
     //---inserts new symbol at head of slot in hash table---
-    public void insertSymbol(chainedEntry newSymbol){
-        int index = getHash(newSymbol.getSymbol());
-        if (symbolTable[index] == null){
-            symbolTable[index] = newSymbol;//new chainedEntry(symbol, block);
-        }
+    public void insertSymbol(String symbol, int block){
+        int index = getHash(symbol);
+        if (symbolTable[index] == null)
+            symbolTable[index] = new chainedEntry(symbol, block);
         else{
-            newSymbol.setNext(symbolTable[index]); 
-            symbolTable[index] = newSymbol;
+            chainedEntry newEntry = new chainedEntry(symbol, block);
+            chainedEntry head = symbolTable[index];
+            newEntry.setNext(head);
+            symbolTable[index] = newEntry;
         }
     }
     
@@ -40,11 +41,11 @@ public class ST {
             chainedEntry lastEntry = symbolTable[index];
             while (lastEntry != null){
                 if (lastEntry.getSymbol().equals(symbol) && lastEntry.getBlock() == block)//if symbol found return lastENtry
-                    return null;//lastEntry;
+                    return lastEntry;
                 lastEntry = lastEntry.getNext();
             }
         }
-        return (new chainedEntry(symbol, block));    
+        return null;    
     }
     
     //--checks to find symbol in all scopes, if found return that entry, else return null
