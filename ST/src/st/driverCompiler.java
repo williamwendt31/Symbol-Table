@@ -2,6 +2,7 @@
 package st;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -9,7 +10,7 @@ public class driverCompiler {
     
     public static void main(String[] args) throws Exception{
         ST myTable = new ST();
-        try (Scanner inputFile = new Scanner(new File("sample.txt"))) {
+        try (Scanner inputFile = new Scanner(new File("C:\\Users\\willi\\Desktop\\sample.txt"))) {
             Stack<Integer> activeBlock = new Stack<>();
             int blockNum = 0;
             while (inputFile.hasNext()){
@@ -22,9 +23,9 @@ public class driverCompiler {
                     activeBlock.pop();
                 else{
                     chainedEntry current = myTable.findInCurrentScope(token, activeBlock.peek());
-                    if (current != null){
-                        myTable.insertSymbol(current);
-                        myTable.findInAllScopes(token, activeBlock.peek());
+                    if (current == null){
+                        myTable.insertSymbol(token, activeBlock.peek());
+                        current = myTable.findInAllScopes(token, activeBlock.peek());
                     }
                 }
             }
