@@ -70,7 +70,7 @@ public class ST {
             symbol = symbolTable[i];
             if (symbolTable[i] != null){
                 do{
-                    System.out.print("("+symbol.getSymbol()+":"+symbol.getBlock()+")");
+                    System.out.print("->("+symbol.getSymbol()+":"+symbol.getBlock()+")");
                     symbol = symbol.getNext();
                 }
                 while (symbol != null);
