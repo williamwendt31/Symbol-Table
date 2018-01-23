@@ -47,6 +47,19 @@ public class ST {
         return (new chainedEntry(symbol, block));    
     }
     
+    //--checks to find symbol in all scopes, if found return that entry, else return null
+    public chainedEntry findInAllScopes(String symbol, int block){
+        int index = getHash(symbol);
+        if (symbolTable[index] != null){
+            chainedEntry entry = symbolTable[index];
+            while (entry != null){
+                if (entry.getSymbol().equals(symbol))
+                    return entry;
+                entry = entry.getNext();
+            }
+        }
+        return null;
+    }
     //---prints out the whole symbol table---
     public void display(){
         chainedEntry symbol = null;
