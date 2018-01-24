@@ -9,7 +9,7 @@ public class driverCompiler {
     
     public static void main(String[] args) throws Exception{
         ST myTable = new ST();
-        try (Scanner inputFile = new Scanner(new File("C:\\Users\\willi\\Desktop\\sample.txt"))) {
+        try (Scanner inputFile = new Scanner(new File("C:\\Users\\willi\\Desktop\\input1.txt"))) {
             Stack<Integer> activeBlock = new Stack<>();
             int blockNum = 0;
             while (inputFile.hasNext()){
@@ -32,7 +32,7 @@ public class driverCompiler {
             inputFile.close();
         }
         catch(Exception e){
-            System.out.println("Exception occurred");
+            System.out.println("Error occurred");
         }
     }
 }
